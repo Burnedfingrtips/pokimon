@@ -1,0 +1,116 @@
+:root {
+  --cursor-color: white;
+}
+body {
+  font-family: "Press Start 2P", cursive;
+  background-image: url("./images/night.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  color:grey;
+}
+.typing {
+  border-right: 1px solid var(--cursor-color);
+  animation: blinking 1s steps(1, end) infinite, typing 4s steps(40, end);
+  overflow: hidden;
+  white-space: nowrap;
+}
+@keyframes typing {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+@keyframes blinking {
+  0% {
+    border-color: transparent;
+  }
+  50% {
+    border-color: var(--cursor-color);
+  }
+  100% {
+    border-color: transparent;
+  }
+}
+.screen-frame {
+  width: 320px;
+  height: 288px;
+  background-color: transparent;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: -1;
+}
+.search-container {
+  position: relative;
+  width: 700px;
+  text-align: center;
+  margin-top: 20px;
+  display: inline-block;
+}
+input {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  position: absolute;
+  background-color: #f9f9f9;
+  z-index: 1000;
+  max-height: 150px;
+  overflow-y: auto;
+}
+li {
+  padding: 10px;
+  background-color: #f0f0f0;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+  text-align: left;
+}
+li:hover {
+  background-color: #e0e0e0;
+}
+img {
+  display: block;
+  margin-top: 20px;
+  width: 300px;
+  height: auto;
+}
+.container {
+  text-align: center;
+}
+
+.dark-mode {
+  filter: brightness(0.1);
+}
+
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 200px;
+  cursor: pointer;
+  z-index: 1000;
+}
+.theme-toggle img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin: 0 5px; /* White border (adjust color as needed) */
+}
+.click-here {
+  color: red; /* Set the text color to red */
+  margin-top: 15px; /* Add some space above the text */
+  cursor: pointer; /* Change cursor to pointer */
+  font-weight: lighter;
+  font-size: 10px;
+}

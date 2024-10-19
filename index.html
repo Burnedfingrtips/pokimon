@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pokemon</title>
+    <link rel="stylesheet" href="index.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+    />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+  <body id="body">
+    <div class="theme-toggle" id="themeToggle">
+      <img src="./images/sunny-day.png" id="dayImage" style="display: none" />
+      <img src="./images/moon.png" id="nightImage" style="display: none" />
+      <div class="click-here">Click Here</div>
+    </div>
+    <div
+      class="container d-flex flex-column align-items-center justify-content-center vh-100"
+    >
+      <div class="text-center">
+        <h1 class="typing" onclick="fetchData()">Search Your Pokemon</h1>
+      </div>
+      <div class="search-container">
+        <input
+          type="text"
+          id="pokemonName"
+          placeholder="Enter Pokémon name"
+          class="form-control"
+        />
+        <ul id="searchList" style="display: none"></ul>
+      </div>
+      <span id="error" class="text-danger mt-3"></span>
+      <div class="screen-frame">
+        <img
+          src=""
+          alt="Pokemon Image"
+          id="pokemonImage"
+          style="display: none"
+        />
+      </div>
+    </div>
+    <script>
+    const body = document.getElementById('body');
+      const dayImage = document.getElementById("dayImage");
+      const nightImage = document.getElementById("nightImage");
+
+      // Set initial theme based on user's preference
+      if (localStorage.getItem("theme") === "dark") {
+        body.body.classList.add("dark-mode");
+        nightImage.style.display = "inline"; // Show night icon
+      } else {
+        document.body.classList.remove("dark-mode");
+        dayImage.style.display = "inline"; // Show day image
+      }
+
+      themeToggle.addEventListener("click", () => {
+        document.body.classList.toggle("dark-mode");
+
+        // Toggle images based on the current theme
+        if (document.body.classList.contains("dark-mode")) {
+          dayImage.style.display = "none"; // Hide day icon
+          nightImage.style.display = "inline"; // Show night icon
+          localStorage.setItem("theme", "dark"); // Save theme to localStorage
+        } else {
+          dayImage.style.display = "inline"; // Show day icon
+          nightImage.style.display = "none"; // Hide night icon
+          localStorage.setItem("theme", "light"); // Save theme to localStorage
+        }
+      });
+      //if day icon clicked nothing happens
+      //if dark mode clicked filter is added
+
+      //fix with css filter
+
+      let allPokemons = [];
+
+      // Fetch all Pokémon names (limit to 151)
+      async function fetchAllPokemons() {
+        const response = await fetch(
+          "https://pokeapi.co/api/v2/pokemon?limit=151"
+        );
+        const data = await response.json();
+        allPokemons = data.results.map((pokemon) => pokemon.name);
+        console.log(allPokemons);
+      }
+
+      // Add event listener for Enter key press
+      document
+        .getElementById("pokemonName")
+        .addEventListener("change", function (event) {
+          if (event.target.value !== "") {
+            filterPokemons(); // Call fetchData when Enter is pressed
+          }
+        });
+
+      //caching so
+
+      //menu darker
+      //css filter
+      //when you click pokemon display stats
+
+      // Existing filterPokemons function
+      function filterPokemons() {
+        const searchTerm = document
+          .getElementById("pokemonName")
+          .value.toLowerCase();
+        const searchList = document.getElementById("searchList");
+        searchList.innerHTML = ""; // Clear the current list
+        const filteredPokemons = allPokemons.filter(
+          (pokemon) => pokemon.toLowerCase().startsWith(searchTerm) //added sort for alphabetical order
+        );
+
+        filteredPokemons.forEach((pokemon) => {
+          const li = document.createElement("li");
+          li.textContent = pokemon;
+          li.addEventListener("click", () => {
+            document.getElementById("pokemonName").value = pokemon;
+            fetchData(); // Fetch data when a Pokémon is selected from the list
+            searchList.innerHTML = ""; // Clear search list after selection
+          });
+          searchList.appendChild(li);
+        });
+
+        // Show or hide the search list based on whether there are matches
+        searchList.style.display =
+          filteredPokemons.length > 0 ? "block" : "none";
+      }
+
+      async function fetchData() {
+        const errorElement = document.getElementById("error");
+        const pokemonName = document
+          .getElementById("pokemonName")
+          .value.toLowerCase();
+        const searchList = document.getElementById("searchList");
+
+        // Clear previous search results and error messages
+        searchList.innerHTML = ""; // Clear the search list
+        errorElement.textContent = ""; // Clear previous error messages
+
+        try {
+          const response = await fetch(
+            `https://pokeapi.co/api/v2/pokemon/${pokemonName}`
+          );
+
+          if (!response.ok) {
+            errorElement.textContent = "Please enter a valid Pokémon name";
+            errorElement.style.color = "red";
+            throw new Error("Can't find it");
+          }
+
+          const data = await response.json();
+          const sprite = data.sprites.front_default;
+          const pokemonImage = document.getElementById("pokemonImage");
+          pokemonImage.src = sprite; // Update the image source
+          pokemonImage.style.display = "block"; // Show the image
+        } catch (error) {
+          console.error(error);
+          errorElement.textContent = "An error occurred while fetching data.";
+        }
+      }
+
+      // Call fetchAllPokemons on page load to initialize the Pokémon list
+      fetchAllPokemons();
+    </script>
+  </body>
+</html>
