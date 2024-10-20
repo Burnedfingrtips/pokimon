@@ -2,12 +2,13 @@
   --cursor-color: white;
 }
 
-body {
+.divWithBackground {
   background-image: url("./images/night.jpeg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   color: white;
+  font-family: 'Press Start 2P';
 }
 
 .typing {
@@ -103,7 +104,7 @@ img {
 }
 
 .dark-mode {
-  filter: brightness(0.3); /* Change brightness for dark mode */
+  filter: brightness(0.4); /* Change brightness for dark mode */
 }
 
 .theme-toggle {
@@ -125,5 +126,5 @@ img {
   color: red;
   margin-top: 15px;
   cursor: pointer;
-  font-weight: lighter;
+  font-weight: bold;
 }
