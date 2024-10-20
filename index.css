@@ -76,6 +76,7 @@ ul {
   max-height: 150px;
   overflow-y: auto;
   color: black;
+  display: none;
 }
 
 li {
@@ -103,7 +104,6 @@ img {
 
 .dark-mode {
   filter: brightness(0.3); /* Change brightness for dark mode */
-  
 }
 
 .theme-toggle {
