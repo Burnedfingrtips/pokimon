@@ -16,9 +16,9 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
   </head>
-  <body id="body">
+  <body>
     <div class="theme-toggle" id="themeToggle">
-      <img src="./images/sunny-day.png" id="dayImage" style="display: none" />
+      <img src="./images/sunny-day.png" id="dayImage" style="display: inline" />
       <img src="./images/moon.png" id="nightImage" style="display: none" />
       <div class="click-here">Click Here</div>
     </div>
@@ -48,38 +48,25 @@
       </div>
     </div>
     <script>
-      const body = document.getElementById("body");
+      const themeToggle = document.getElementById("themeToggle");
       const dayImage = document.getElementById("dayImage");
       const nightImage = document.getElementById("nightImage");
 
-      // Set initial theme based on user's preference
-      if (localStorage.getItem("theme") === "dark") {
-        body.body.classList.add("dark-mode");
-        nightImage.style.display = "inline"; // Show night icon
-      } else {
-        document.body.classList.remove("dark-mode");
-        dayImage.style.display = "inline"; // Show day image
-      }
-
       themeToggle.addEventListener("click", () => {
+        // Toggle dark mode and filter effect on the body
         document.body.classList.toggle("dark-mode");
 
-        // Toggle images based on the current theme
+        // Toggle day and night images
         if (document.body.classList.contains("dark-mode")) {
-          dayImage.style.display = "none"; // Hide day icon
-          nightImage.style.display = "inline"; // Show night icon
-          localStorage.setItem("theme", "dark"); // Save theme to localStorage
+          dayImage.style.display = "none"; // Hide day image
+          nightImage.style.display = "inline"; // Show night image
         } else {
-          dayImage.style.display = "inline"; // Show day icon
-          nightImage.style.display = "none"; // Hide night icon
-          localStorage.setItem("theme", "light"); // Save theme to localStorage
+          dayImage.style.display = "inline"; // Show day image
+          nightImage.style.display = "none"; // Hide night image
         }
       });
-      //if day icon clicked nothing happens
-      //if dark mode clicked filter is added
 
-      //fix with css filter
-
+      // Pokemon data fetching logic remains the same
       let allPokemons = [];
 
       // Fetch all Pokémon names (limit to 151)
@@ -92,30 +79,22 @@
         console.log(allPokemons);
       }
 
-      // Add event listener for Enter key press
       document
         .getElementById("pokemonName")
         .addEventListener("change", function (event) {
           if (event.target.value !== "") {
-            filterPokemons(); // Call fetchData when Enter is pressed
+            filterPokemons();
           }
         });
 
-      //caching so
-
-      //menu darker
-      //css filter
-      //when you click pokemon display stats
-
-      // Existing filterPokemons function
       function filterPokemons() {
         const searchTerm = document
           .getElementById("pokemonName")
           .value.toLowerCase();
         const searchList = document.getElementById("searchList");
-        searchList.innerHTML = ""; // Clear the current list
-        const filteredPokemons = allPokemons.filter(
-          (pokemon) => pokemon.toLowerCase().startsWith(searchTerm) //added sort for alphabetical order
+        searchList.innerHTML = "";
+        const filteredPokemons = allPokemons.filter((pokemon) =>
+          pokemon.toLowerCase().startsWith(searchTerm)
         );
 
         filteredPokemons.forEach((pokemon) => {
@@ -123,13 +102,12 @@
           li.textContent = pokemon;
           li.addEventListener("click", () => {
             document.getElementById("pokemonName").value = pokemon;
-            fetchData(); // Fetch data when a Pokémon is selected from the list
-            searchList.innerHTML = ""; // Clear search list after selection
+            fetchData();
+            searchList.innerHTML = "";
           });
           searchList.appendChild(li);
         });
 
-        // Show or hide the search list based on whether there are matches
         searchList.style.display =
           filteredPokemons.length > 0 ? "block" : "none";
       }
@@ -141,9 +119,8 @@
           .value.toLowerCase();
         const searchList = document.getElementById("searchList");
 
-        // Clear previous search results and error messages
-        searchList.innerHTML = ""; // Clear the search list
-        errorElement.textContent = ""; // Clear previous error messages
+        searchList.innerHTML = "";
+        errorElement.textContent = "";
 
         try {
           const response = await fetch(
@@ -159,15 +136,14 @@
           const data = await response.json();
           const sprite = data.sprites.front_default;
           const pokemonImage = document.getElementById("pokemonImage");
-          pokemonImage.src = sprite; // Update the image source
-          pokemonImage.style.display = "block"; // Show the image
+          pokemonImage.src = sprite;
+          pokemonImage.style.display = "block";
         } catch (error) {
           console.error(error);
           errorElement.textContent = "An error occurred while fetching data.";
         }
       }
 
-      // Call fetchAllPokemons on page load to initialize the Pokémon list
       fetchAllPokemons();
     </script>
   </body>
