@@ -113,7 +113,7 @@ async function fetchData() {
     pokemonImage.style.display = "block"; // Show the image
   } catch (error) {
     console.error(error);
-    errorElement.textContent = "An error occurred while fetching Pokémon data.";
+    errorElement.textContent = "Please put a valid pokemon name";
   }
 }
 
