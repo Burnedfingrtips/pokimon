@@ -43,13 +43,6 @@
   width: 320px;
   height: 288px;
   background-color: transparent;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  overflow: hidden;
-  z-index: -1;
 }
 
 .search-container {
@@ -123,11 +116,4 @@ img {
   height: 50px;
   object-fit: cover;
   border-radius: 50%;
-}
-
-.click-here {
-  color: red;
-  margin-top: 15px;
-  cursor: pointer;
-  font-weight: bold;
 }

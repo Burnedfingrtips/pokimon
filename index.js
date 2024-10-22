@@ -5,17 +5,20 @@ const ul = document.getElementById("searchList");
 const input = document.getElementById("pokemonName");
 
 themeToggle.addEventListener("click", function () {
-  if (dayIcon.style.display === "block") {
-    document.getElementById("divWithBackground").classList.remove("light-mode");
-    document.getElementById("divWithBackground").classList.add("dark-mode"); // Remove dark mode class
+  const divWithBackground = document.getElementById("divWithBackground");
+
+  // Check if the dark mode is currently active
+  if (divWithBackground.classList.contains("dark-mode")) {
+    // If dark mode is active, switch to light mode
+    divWithBackground.classList.remove("dark-mode");
+    divWithBackground.classList.add("light-mode");
 
     nightIcon.style.display = "block"; // Show night icon
     dayIcon.style.display = "none"; // Hide day icon
   } else {
-    // If night icon is visible, remove dark mode and switch to day icon
-    document;
-    document.getElementById("divWithBackground").classList.remove("dark-mode");
-    document.getElementById("divWithBackground").classList.add("light-mode"); // Remove dark mode class
+    // If light mode is active, switch to dark mode
+    divWithBackground.classList.remove("light-mode");
+    divWithBackground.classList.add("dark-mode");
 
     nightIcon.style.display = "none"; // Hide night icon
     dayIcon.style.display = "block"; // Show day icon
@@ -70,14 +73,8 @@ function filterPokemons() {
   ul.style.display = filteredPokemons.length > 0 ? "block" : "none";
 }
 
-
 //now add a stats function when pokimon is clicked if pokimon is visible
-//also fix the logic behind the search 
-
-
-
-
-
+//also fix the logic behind the search
 
 // Fetch detailed Pokémon data
 async function fetchData() {
@@ -95,17 +92,13 @@ async function fetchData() {
       errorElement.textContent = "Please enter a valid Pokémon name";
       errorElement.style.color = "red";
       throw new Error("Invalid Pokémon name");
-    } 
+    }
 
     const data = await response.json();
     const sprite = data.sprites.front_default;
     const pokemonImage = document.getElementById("pokemonImage");
     pokemonImage.src = sprite; // Update the image source
     pokemonImage.style.display = "block"; // Show the image
-
-    
-
-
   } catch (error) {
     console.error(error);
     errorElement.textContent = "An error occurred while fetching Pokémon data.";
@@ -115,6 +108,15 @@ async function fetchData() {
 // Call fetchAllPokemons on page load
 fetchAllPokemons();
 
-
-
 //for alerts do document.dad.classList instead of the whole
+
+/*
+
+When the image is clicked, fetch stats.
+
+Display stats below the image.
+
+
+
+
+*/
