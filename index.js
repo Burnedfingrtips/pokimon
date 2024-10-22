@@ -5,6 +5,12 @@ const ul = document.getElementById("searchList");
 const input = document.getElementById("pokemonName");
 const stats = document.getElementById("stats");
 const error = document.getElementById("error");
+const mini = document.querySelector(".mini"); // Change this selector to target your element
+
+// if pokedex is clicked page will reload
+mini.addEventListener("click", function () {
+  location.reload(); // This will reload the page
+});
 
 themeToggle.addEventListener("click", function () {
   const divWithBackground = document.getElementById("divWithBackground");
