@@ -48,6 +48,18 @@ input.addEventListener("input", function () {
     ul.style.display = "none"; // Hide the list when input is empty
   }
 });
+
+pokemonName.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    if (input.value !== "") {
+      fetchData(); // Filter on Enter key press
+      pokemonImage.style.display = "none";
+      input.value = "";
+    } else {
+      ul.style.display = "none"; // Hide the list when input is empty
+    }
+  }
+});
 // toggle
 
 // Filter Pokémon names

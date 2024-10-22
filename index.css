@@ -22,8 +22,6 @@ body {
   font-size: 25px;
 }
 
-
-
 @keyframes typing {
   0% {
     width: 0;
@@ -118,7 +116,7 @@ img {
 .theme-toggle {
   position: fixed;
   top: 20px;
-  right: 20px; /* Only one 'right' property */
+  right: 40px; /* Only one 'right' property */
   cursor: pointer;
   z-index: 1000;
 }
