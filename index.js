@@ -4,6 +4,7 @@ const nightImage = document.getElementById("nightIcon");
 const ul = document.getElementById("searchList");
 const input = document.getElementById("pokemonName");
 const stats = document.getElementById("stats");
+const error = document.getElementById("error");
 
 themeToggle.addEventListener("click", function () {
   const divWithBackground = document.getElementById("divWithBackground");
@@ -14,13 +15,14 @@ themeToggle.addEventListener("click", function () {
     divWithBackground.classList.remove("dark-mode");
     divWithBackground.classList.add("light-mode");
 
+    error.style.color = "red";
     nightIcon.style.display = "block"; // Show night icon
     dayIcon.style.display = "none"; // Hide day icon
   } else {
     // If light mode is active, switch to dark mode
     divWithBackground.classList.remove("light-mode");
     divWithBackground.classList.add("dark-mode");
-
+    error.style.color = "white";
     nightIcon.style.display = "none"; // Hide night icon
     dayIcon.style.display = "block"; // Show day icon
   }

@@ -29,7 +29,7 @@ body {
   font-size: 25px;
 }
 #error {
-  color: red;
+  color: white;
   opacity: 90%;
   font-size: 14px;
 }
@@ -54,7 +54,6 @@ body {
     border-color: transparent;
   }
 }
-
 
 .screen-frame {
   width: 320px;
@@ -119,7 +118,8 @@ img {
 }
 
 .dark-mode {
-  filter: brightness(0.4); /* Change brightness for dark mode */
+  filter: invert(1) hue-rotate(180deg);
+  background-color: #121212;
 }
 
 .light-mode {
@@ -135,8 +135,8 @@ img {
 }
 
 .theme-toggle img {
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   object-fit: cover;
   border-radius: 50%;
 }
