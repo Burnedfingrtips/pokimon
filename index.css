@@ -14,12 +14,24 @@ body {
   font-family: "Press Start 2P";
 }
 
+.mini {
+  position: fixed;
+  top: 20px;
+  left: 80px; /* Keep it on the left */
+  z-index: 500;
+  opacity: 50%;
+}
 .typing {
   border-right: 1px solid var(--cursor-color);
   animation: blinking 1s steps(1, end) infinite, typing 4s steps(40, end);
   overflow: hidden;
   white-space: nowrap;
   font-size: 25px;
+}
+#error {
+  color: red;
+  opacity: 90%;
+  font-size: 14px;
 }
 
 @keyframes typing {
@@ -42,6 +54,7 @@ body {
     border-color: transparent;
   }
 }
+
 
 .screen-frame {
   width: 320px;
@@ -116,7 +129,7 @@ img {
 .theme-toggle {
   position: fixed;
   top: 20px;
-  right: 40px; /* Only one 'right' property */
+  right: 90px; /* Only one 'right' property */
   cursor: pointer;
   z-index: 1000;
 }

@@ -3,6 +3,7 @@ const dayImage = document.getElementById("dayIcon");
 const nightImage = document.getElementById("nightIcon");
 const ul = document.getElementById("searchList");
 const input = document.getElementById("pokemonName");
+const stats = document.getElementById("stats");
 
 themeToggle.addEventListener("click", function () {
   const divWithBackground = document.getElementById("divWithBackground");
@@ -86,7 +87,13 @@ function filterPokemons() {
 }
 
 //now add a stats function when pokimon is clicked if pokimon is visible
-//also fix the logic behind the search
+pokemonImage.addEventListener("click", async () => {
+  if ((pokemonImage.display.style = "block")) {
+    stats.display.style = "block";
+  } else {
+    stats.display.style = "none";
+  }
+});
 
 // Fetch detailed Pokémon data
 async function fetchData() {
