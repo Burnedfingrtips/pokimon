@@ -1,11 +1,14 @@
 :root {
   --cursor-color: white;
 }
-
+body {
+  background-image: url("./images/night.jpeg");
+}
 .divWithBackground {
   background-image: url("./images/night.jpeg");
   background-size: cover;
   background-repeat: no-repeat;
+  width: 100%;
   background-position: center;
   color: white;
   font-family: "Press Start 2P";
@@ -16,7 +19,10 @@
   animation: blinking 1s steps(1, end) infinite, typing 4s steps(40, end);
   overflow: hidden;
   white-space: nowrap;
+  font-size: 25px;
 }
+
+
 
 @keyframes typing {
   0% {
@@ -47,9 +53,10 @@
 
 .search-container {
   position: relative;
-  width: 700px;
+  width: 100%;
+  max-width: 500px; /* Reduce size for larger screens */
   text-align: center;
-  margin-top: 20px;
+  margin: 20px auto; /* Center the container */
   display: inline-block;
 }
 
@@ -88,17 +95,22 @@ li:hover {
 img {
   display: block;
   margin-top: 20px;
-  width: 300px;
+  width: 100%;
+  max-width: 300px;
   height: auto;
 }
 
 .container {
   text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .dark-mode {
   filter: brightness(0.4); /* Change brightness for dark mode */
 }
+
 .light-mode {
   filter: brightness(1);
 }
@@ -106,7 +118,7 @@ img {
 .theme-toggle {
   position: fixed;
   top: 20px;
-  right: 200px;
+  right: 20px; /* Only one 'right' property */
   cursor: pointer;
   z-index: 1000;
 }
@@ -116,4 +128,37 @@ img {
   height: 50px;
   object-fit: cover;
   border-radius: 50%;
+}
+
+/* Styles for screens smaller than 768px (tablets and phones) */
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column; /* Stack items on smaller screens */
+    padding: 10px;
+    font-size: 10px;
+  }
+
+  .search-container {
+    max-width: 400px; /* Make the container smaller for tablets */
+  }
+  .search-container {
+    max-width: 400px;
+  }
+
+  .custom-width {
+    width: 300px;
+  }
+
+  /* Styles for screens smaller than 480px (phones) */
+  @media screen and (max-width: 480px) {
+    .container {
+      flex-direction: column;
+      padding: 5px;
+      font-size: 12px;
+    }
+
+    .search-container {
+      max-width: 300px; /* Make the container smaller for mobile */
+    }
+  }
 }
