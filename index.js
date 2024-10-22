@@ -122,9 +122,11 @@ async function fetchData() {
     }
 
     const data = await response.json();
-    const sprite = data.sprites.front_default;
+    const pokemonId = data.id; // Get the Pokémon's ID
+    const showdownSpriteUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/${pokemonId}.gif`;
     const pokemonImage = document.getElementById("pokemonImage");
-    pokemonImage.src = sprite; // Update the image source
+
+    pokemonImage.src = showdownSpriteUrl; // Set the showdown sprite URL as the image source
     pokemonImage.style.display = "block"; // Show the image
   } catch (error) {
     console.error(error);

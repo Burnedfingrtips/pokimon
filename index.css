@@ -58,14 +58,9 @@ body {
 }
 
 .screen-frame {
-  width: 320px;
-  height: 288px;
+  width: 100px;
+  height: auto;
   background-color: transparent;
-}
-#stats {
-  display: flex;
-  flex-direction: right; /* Make the stats appear in a single column */
-  font-size: 16px; /* Adjust font size as needed */
 }
 
 .search-container {
