@@ -8,7 +8,7 @@
   background-repeat: no-repeat;
   background-position: center;
   color: white;
-  font-family: 'Press Start 2P';
+  font-family: "Press Start 2P";
 }
 
 .typing {
@@ -105,6 +105,9 @@ img {
 
 .dark-mode {
   filter: brightness(0.4); /* Change brightness for dark mode */
+}
+.light-mode {
+  filter: brightness(1);
 }
 
 .theme-toggle {
