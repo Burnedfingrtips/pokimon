@@ -132,6 +132,36 @@ async function fetchData() {
   }
 }
 
+pokemonImage.addEventListener("click", async () => {
+  const pokemonName = input.value.toLowerCase();
+  const errorElement = document.getElementById("error");
+  stats.style.display = "none"; // Hide stats initially
+
+  try {
+    const response = await fetch(
+      `https://pokeapi.co/api/v2/pokemon/${pokemonName}`
+    );
+
+    if (!response.ok) {
+      throw new Error("no stats");
+    }
+
+    const data = await response.json();
+    const statsElement = document.getElementById("stats");
+
+    // Build the stats display content
+    const statsHtml = data.stats
+      .map((stat) => `<p>${stat.stat.name}: ${stat.base_stat}</p>`)
+      .join("");
+
+    statsElement.innerHTML = statsHtml; // Update the stats element with Pokémon stats
+    stats.style.display = "block"; // Show the stats
+  } catch (error) {
+    console.error(error);
+    errorElement.textContent = "An error occurred while fetching stats.";
+  }
+});
+
 // Call fetchAllPokemons on page load
 fetchAllPokemons();
 
