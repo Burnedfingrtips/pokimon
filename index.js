@@ -184,6 +184,8 @@ fetchAllPokemons();
 final feature: project finally
 - add generations buttons where you see the generations of the pokimon and can view the pokimon
 - also include stats upon click
+- ask for help on how to make it more efficient 
+- after this make it a server as the api calls puts too much pressure on client side rending it slow
 
 
 */
