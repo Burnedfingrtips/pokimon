@@ -6,6 +6,7 @@ const input = document.getElementById("pokemonName");
 const stats = document.getElementById("stats");
 const error = document.getElementById("error");
 const mini = document.querySelector(".mini"); // Change this selector to target your element
+const pokeImage = document.querySelector("pokimonImage");
 
 // if pokedex is clicked page will reload
 mini.addEventListener("click", function () {
@@ -53,8 +54,14 @@ async function fetchAllPokemons() {
 input.addEventListener("input", function () {
   if (input.value !== "") {
     filterPokemons(); // Filter as the user types
+    stats.style.display = "none";
+    stats.textContent = "";
+    pokemonImage.style.display = "none";
   } else {
     ul.style.display = "none"; // Hide the list when input is empty
+    stats.style.display = "none";
+    stats.textContent = "";
+    pokemonImage.style.display = "none";
   }
 });
 
@@ -62,6 +69,7 @@ pokemonName.addEventListener("keydown", function (event) {
   if (event.key === "Enter") {
     if (input.value !== "") {
       fetchData(); // Filter on Enter key press
+      stats.style.display = "none";
       pokemonImage.style.display = "none";
       input.value = "";
     } else {

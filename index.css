@@ -4,6 +4,7 @@
 body {
   background-image: url("./images/night.jpeg");
 }
+
 .divWithBackground {
   background-image: url("./images/night.jpeg");
   background-size: cover;
@@ -22,7 +23,9 @@ body {
   opacity: 50%;
   cursor: pointer;
 }
-
+#stats {
+  right: 10px;
+}
 .typing {
   border-right: 1px solid var(--cursor-color);
   animation: blinking 1s steps(1, end) infinite, typing 4s steps(40, end);
@@ -58,9 +61,23 @@ body {
 }
 
 .screen-frame {
-  width: 100px;
-  height: auto;
   background-color: transparent;
+  display: flex;
+  justify-content: space-between; /* Distributes the two divs evenly */
+  align-items: center;
+  padding-left: 30px;
+  gap: 60px;
+}
+.stats p {
+  display: block;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  text-align: left;
+}
+.pokemonImage {
+  width: 150px; /* Set the desired width */
+  height: 150px;
 }
 
 .search-container {
