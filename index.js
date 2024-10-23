@@ -161,9 +161,13 @@ pokemonImage.addEventListener("click", async () => {
 
     // Build the stats display content
     const statsHtml = data.stats
-      .map((stat) => `<p>${stat.stat.name}: ${stat.base_stat}</p>`)
+      .map(
+        (stat) => `
+    <p>${stat.stat.name}: 
+      <span class="stat-value" id="statValue">${stat.base_stat}</span>
+    </p>`
+      )
       .join("");
-
     statsElement.innerHTML = statsHtml; // Update the stats element with Pokémon stats
     stats.style.display = "block"; // Show the stats
   } catch (error) {

@@ -49,14 +49,53 @@
           <ul id="searchList" style="display: none"></ul>
         </div>
         <span id="error"></span>
-        <div class="screen-frame">
-          <img
-            src=""
-            alt="Pokemon Image"
-            id="pokemonImage"
-            class="pokemonImage"
-            style="display: none"
-          />
+        <div class="stats-img-con">
+          <div class="dropdown">
+            <button
+              class="btn btn-secondary dropdown-toggle custom-dropdown-width"
+              style="
+                font-size: 10px;
+                background-color: transparent;
+                border-color: transparent;
+              "
+              type="button"
+              id="dropdownMenuButton"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Gen
+            </button>
+            <div
+              class="dropdown-menu custom-dropdown-menu"
+              style="
+                font-size: 10px;
+                background-color: transparent;
+                border-color: transparent;
+              "
+              aria-labelledby="dropdownMenuButton"
+            >
+              <a class="dropdown-item" href="#">Gen1</a>
+              <a class="dropdown-item" href="#">Gen2</a>
+              <a class="dropdown-item" href="#">Gen3</a>
+              <a class="dropdown-item" href="#">Gen4</a>
+              <a class="dropdown-item" href="#">Gen5</a>
+              <a class="dropdown-item" href="#">Gen6</a>
+              <a class="dropdown-item" href="#">Gen7</a>
+              <a class="dropdown-item" href="#">Gen8</a>
+              <a class="dropdown-item" href="#">Gen9</a>
+            </div>
+          </div>
+
+          <div class="screen-frame">
+            <img
+              src=""
+              alt="Pokemon Image"
+              id="pokemonImage"
+              class="pokemonImage"
+              style="display: none"
+            />
+          </div>
           <div id="stats" class="stats" style="display: none"></div>
         </div>
       </div>
