@@ -175,15 +175,11 @@ pokemonImage.addEventListener("click", async () => {
 // Call fetchAllPokemons on page load
 fetchAllPokemons();
 
-//for alerts do document.dad.classList instead of the whole
-
 /*
 
-When the image is clicked, fetch stats.
-
-Display stats below the image.
-
-
+final feature: project finally
+- add generations buttons where you see the generations of the pokimon and can view the pokimon
+- also include stats upon click
 
 
 */
