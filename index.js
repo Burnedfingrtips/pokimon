@@ -7,6 +7,7 @@ const stats = document.getElementById("stats");
 const error = document.getElementById("error");
 const mini = document.querySelector(".mini"); // Change this selector to target your element
 const pokeImage = document.querySelector("pokimonImage");
+var selectedPokemon; //when
 
 // if pokedex is clicked page will reload
 mini.addEventListener("click", function () {
@@ -111,6 +112,10 @@ pokemonImage.addEventListener("click", async () => {
   }
 });
 
+function selectedGen() {
+  console.log(selectedPokemon);
+}
+
 // Fetch detailed Pokémon data
 async function fetchData() {
   const errorElement = document.getElementById("error");
@@ -130,17 +135,21 @@ async function fetchData() {
     }
 
     const data = await response.json();
+    selectedPokemon = data;
+
     const pokemonId = data.id; // Get the Pokémon's ID
     const showdownSpriteUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/${pokemonId}.gif`;
     const pokemonImage = document.getElementById("pokemonImage");
-
-    pokemonImage.src = showdownSpriteUrl; // Set the showdown sprite URL as the image source
+    //when you call the gen selector update this image
+    pokemonImage.src = showdownSpriteUrl; //link to updated image // Set the showdown sprite URL as the image source
     pokemonImage.style.display = "block"; // Show the image
   } catch (error) {
     console.error(error);
     errorElement.textContent = "Please put a valid pokemon name";
   }
 }
+// function selectgen() => take id and then map id to image
+//store data in global variable
 
 pokemonImage.addEventListener("click", async () => {
   const pokemonName = input.value.toLowerCase();
@@ -187,5 +196,6 @@ final feature: project finally
 - ask for help on how to make it more efficient 
 - after this make it a server as the api calls puts too much pressure on client side rending it slow
 
-
+- add listener to the options and when you select the gen save the index and in your image when you display 
+modify when index changes image changes. default gen1 
 */

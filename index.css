@@ -4,7 +4,9 @@
 body {
   background-image: url("./images/night.jpeg");
 }
-
+.custom-dropdown-menu a {
+  color: white;
+}
 .divWithBackground {
   background-image: url("./images/night.jpeg");
   background-size: cover;
