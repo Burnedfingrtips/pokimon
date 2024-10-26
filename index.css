@@ -1,12 +1,14 @@
 :root {
   --cursor-color: white;
 }
+
 body {
   background-image: url("./images/night.jpeg");
 }
 .custom-dropdown-menu a {
   color: white;
 }
+
 .divWithBackground {
   background-image: url("./images/night.jpeg");
   background-size: cover;
@@ -70,6 +72,10 @@ body {
 .custom-dropdown-menu {
   width: 200px; /* Change the width as needed */
 }
+.stats-img-con .dropdown {
+  margin-top: -270;
+}
+
 .stats-img-con {
   display: flex;
   justify-content: space-between; /* Distributes the two divs evenly */

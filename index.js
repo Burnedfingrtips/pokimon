@@ -7,7 +7,8 @@ const stats = document.getElementById("stats");
 const error = document.getElementById("error");
 const mini = document.querySelector(".mini"); // Change this selector to target your element
 const pokeImage = document.querySelector("pokimonImage");
-var selectedPokemon; //when
+const gen2 = document.getElementById("gen2");
+const gen1 = document.getElementById("gen1");
 
 // if pokedex is clicked page will reload
 mini.addEventListener("click", function () {
@@ -105,16 +106,16 @@ function filterPokemons() {
 
 //now add a stats function when pokimon is clicked if pokimon is visible
 pokemonImage.addEventListener("click", async () => {
-  if ((pokemonImage.display.style = "block")) {
-    stats.display.style = "block";
+  if (pokemonImage.style.display === "block") {
+    stats.style.display = "block";
   } else {
-    stats.display.style = "none";
+    stats.style.display = "none";
   }
 });
 
-function selectedGen() {
-  console.log(selectedPokemon);
-}
+function selectedGen() {}
+
+//how to change pokimon image
 
 // Fetch detailed Pokémon data
 async function fetchData() {
@@ -186,7 +187,6 @@ pokemonImage.addEventListener("click", async () => {
 });
 
 // Call fetchAllPokemons on page load
-fetchAllPokemons();
 
 /*
 
@@ -199,3 +199,46 @@ final feature: project finally
 - add listener to the options and when you select the gen save the index and in your image when you display 
 modify when index changes image changes. default gen1 
 */
+
+gen1.addEventListener("click", async (event) => {
+  event.preventDefault();
+  fetchData();
+});
+
+gen2.addEventListener("click", async (event) => {
+  event.preventDefault(); // Prevents default anchor behavior
+
+  const errorElement = document.getElementById("error");
+  const pokemonName = input.value.toLowerCase();
+  ul.innerHTML = ""; // Clear the list
+  errorElement.textContent = ""; // Clear previous error
+
+  try {
+    const response = await fetch(
+      `https://pokeapi.co/api/v2/pokemon/${pokemonName}`
+    );
+
+    if (!response.ok) {
+      errorElement.textContent = "Please enter a valid Pokémon name";
+      errorElement.style.color = "red";
+      throw new Error("Invalid Pokémon name");
+    }
+
+    const data = await response.json();
+    selectedPokemon = data;
+
+    const pokemonId = data.id; // Get the Pokémon's ID
+    const showdownSpriteUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-ii/crystal/${pokemonId}.png`;
+    const pokemonImage = document.getElementById("pokemonImage");
+
+    // Update the image to the new Pokémon
+    pokemonImage.src = showdownSpriteUrl;
+    pokemonImage.style.display = "block"; // Show the image if it's hidden
+    // Transparent background
+  } catch (error) {
+    console.error(error);
+    errorElement.textContent = "Please put a valid Pokémon name";
+  }
+});
+
+fetchAllPokemons();
