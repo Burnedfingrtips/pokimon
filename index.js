@@ -108,10 +108,13 @@ function filterPokemons() {
 }
 
 //now add a stats function when pokimon is clicked if pokimon is visible
-pokemonImage.addEventListener("click", async () => {
+pokemonImage.addEventListener("click", () => {
   if (pokemonImage.style.display === "block") {
     stats.style.display = "block";
-  } else {
+  }
+});
+stats.addEventListener("click", () => {
+  if (stats.style.display === "block") {
     stats.style.display = "none";
   }
 });
