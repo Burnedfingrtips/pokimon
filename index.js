@@ -60,7 +60,6 @@ input.addEventListener("input", function () {
     stats.style.display = "none";
     stats.textContent = "";
     pokemonImage.style.display = "none";
-    gen.style.display = "block";
   } else {
     ul.style.display = "none"; // Hide the list when input is empty
     stats.style.display = "none";
@@ -119,8 +118,6 @@ stats.addEventListener("click", () => {
   }
 });
 
-function selectedGen() {}
-
 //how to change pokimon image
 
 // Fetch detailed Pokémon data
@@ -138,12 +135,13 @@ async function fetchData() {
     if (!response.ok) {
       errorElement.textContent = "Please enter a valid Pokémon name";
       errorElement.style.color = "red";
+      gen.style.display = "none";
       throw new Error("Invalid Pokémon name");
     }
 
     const data = await response.json();
     selectedPokemon = data;
-
+    gen.style.display = "block";
     const pokemonId = data.id; // Get the Pokémon's ID
     const showdownSpriteUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/${pokemonId}.gif`;
     const pokemonImage = document.getElementById("pokemonImage");
