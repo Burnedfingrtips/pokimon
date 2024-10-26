@@ -6,7 +6,6 @@ const input = document.getElementById("pokemonName");
 const stats = document.getElementById("stats");
 const error = document.getElementById("error");
 const mini = document.querySelector(".mini"); // Change this selector to target your element
-const pokeImage = document.querySelector("pokimonImage");
 const gen = document.getElementById("dropdownMenuButton");
 const gen2 = document.getElementById("gen2");
 const gen1 = document.getElementById("gen1");
